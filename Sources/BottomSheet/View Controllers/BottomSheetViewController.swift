@@ -20,7 +20,7 @@ class BottomSheetViewController<Content: View>: UIViewController, UISheetPresent
     private let prefersEdgeAttachedInCompactHeight: Bool
     @Binding private var selectedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
     private let widthFollowsPreferredContentSizeWhenEdgeAttached: Bool
-
+    private let preferredCornerRadius: CGFloat?
     private let contentView: UIHostingController<Content>
 
     init(
@@ -32,6 +32,7 @@ class BottomSheetViewController<Content: View>: UIViewController, UISheetPresent
         prefersEdgeAttachedInCompactHeight: Bool = false,
         selectedDetentIdentifier: Binding<UISheetPresentationController.Detent.Identifier?> = Binding.constant(nil),
         widthFollowsPreferredContentSizeWhenEdgeAttached: Bool = false,
+        preferredCornerRadius: CGFloat? = nil,
         isModalInPresentation: Bool = false,
         content: Content
     ) {
@@ -44,7 +45,7 @@ class BottomSheetViewController<Content: View>: UIViewController, UISheetPresent
         self.prefersEdgeAttachedInCompactHeight = prefersEdgeAttachedInCompactHeight
         self._selectedDetentIdentifier = selectedDetentIdentifier
         self.widthFollowsPreferredContentSizeWhenEdgeAttached = widthFollowsPreferredContentSizeWhenEdgeAttached
-        
+        self.preferredCornerRadius = preferredCornerRadius
         self.contentView = UIHostingController(rootView: content)
 
         super.init(nibName: nil, bundle: nil)
@@ -78,6 +79,7 @@ class BottomSheetViewController<Content: View>: UIViewController, UISheetPresent
             presentationController.prefersEdgeAttachedInCompactHeight = prefersEdgeAttachedInCompactHeight
             presentationController.selectedDetentIdentifier = selectedDetentIdentifier
             presentationController.widthFollowsPreferredContentSizeWhenEdgeAttached = widthFollowsPreferredContentSizeWhenEdgeAttached
+            presentationController.preferredCornerRadius = preferredCornerRadius
             presentationController.delegate = self
         }
     }

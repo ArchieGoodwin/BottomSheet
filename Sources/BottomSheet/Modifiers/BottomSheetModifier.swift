@@ -21,7 +21,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
     private let isModalInPresentation: Bool
     private var onDismiss: (() -> Void)?
     private let contentView: () -> ContentView
-    
+    private let preferredCornerRadius: CGFloat?
     @State private var bottomSheetViewController: BottomSheetViewController<ContentView>?
 
     init(
@@ -33,6 +33,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         prefersEdgeAttachedInCompactHeight: Bool = false,
         selectedDetentIdentifier: Binding<UISheetPresentationController.Detent.Identifier?> = Binding.constant(nil),
         widthFollowsPreferredContentSizeWhenEdgeAttached: Bool = false,
+        preferredCornerRadius: CGFloat? = nil,
         isModalInPresentation: Bool = false,
         onDismiss: (() -> Void)? = nil,
         @ViewBuilder contentView: @escaping () -> ContentView
@@ -46,6 +47,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         self._selectedDetentIdentifier = selectedDetentIdentifier
         self.widthFollowsPreferredContentSizeWhenEdgeAttached = widthFollowsPreferredContentSizeWhenEdgeAttached
         self.isModalInPresentation = isModalInPresentation
+        self.preferredCornerRadius = preferredCornerRadius
         self.contentView = contentView
         self.onDismiss = onDismiss
     }
@@ -59,6 +61,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         prefersEdgeAttachedInCompactHeight: Bool = false,
         selectedDetentIdentifier: Binding<UISheetPresentationController.Detent.Identifier?> = Binding.constant(nil),
         widthFollowsPreferredContentSizeWhenEdgeAttached: Bool = false,
+        preferredCornerRadius: CGFloat? = nil,
         isModalInPresentation: Bool = false,
         onDismiss: (() -> Void)? = nil,
         @ViewBuilder contentView: @escaping () -> ContentView
@@ -76,6 +79,7 @@ struct BottomSheet<T: Any, ContentView: View>: ViewModifier {
         self._selectedDetentIdentifier = selectedDetentIdentifier
         self.widthFollowsPreferredContentSizeWhenEdgeAttached = widthFollowsPreferredContentSizeWhenEdgeAttached
         self.isModalInPresentation = isModalInPresentation
+         self.preferredCornerRadius = preferredCornerRadius
         self.contentView = contentView
      }
 
